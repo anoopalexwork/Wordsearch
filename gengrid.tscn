@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dldr67g0e802p"]
+
+[ext_resource type="Script" path="res://gengrid.gd" id="1_7t77m"]
+[ext_resource type="Script" path="res://New.gd" id="3_f06et"]
+[ext_resource type="Script" path="res://drawPuzzle.gd" id="3_lalgr"]
+
+[sub_resource type="GDScript" id="GDScript_afwaa"]
+script/source = "extends Node
+
+var tex
+var btn
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+	
+
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uvj55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0uwh"]
+bg_color = Color(0.313726, 0.67451, 0.6, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_olxg7"]
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_afwaa")
+
+[node name="Puzzle" type="Area2D" parent="."]
+script = ExtResource("1_7t77m")
+
+[node name="gfxGrid" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 656.0
+offset_bottom = 686.0
+script = ExtResource("3_lalgr")
+
+[node name="BtnNew" type="Label" parent="." node_paths=PackedStringArray("shortcut_context")]
+material = SubResource("CanvasItemMaterial_uvj55")
+custom_minimum_size = Vector2(80, 11)
+offset_left = 35.0
+offset_top = 800.0
+offset_right = 125.0
+offset_bottom = 830.0
+scale = Vector2(2, 2)
+shortcut_context = NodePath(".")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w0uwh")
+text = "Generate"
+label_settings = SubResource("LabelSettings_olxg7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("3_f06et")
